@@ -1,18 +1,19 @@
-import { droppedLogger, deprecatedLogger } from "./utils.js";
+import { isArray, isPlainObject, isString } from "@vuepress/shared";
+import { deprecatedLogger, droppedLogger } from "./utils.js";
 import { logger } from "../utils.js";
 
 import type {
-  SidebarOptions,
   SidebarArrayOptions,
   SidebarItem,
+  SidebarOptions,
 } from "../../shared/index.js";
 
 const handleArraySidebarOptions = (config: unknown[]): SidebarArrayOptions =>
   config
     .map((item) => {
-      if (typeof item === "string") return item;
+      if (isString(item)) return item;
 
-      if (typeof item === "object") {
+      if (isPlainObject(item)) {
         const convertConfig: [string, string][] = [
           ["title", "text"],
           ["path", "link"],
@@ -35,7 +36,7 @@ const handleArraySidebarOptions = (config: unknown[]): SidebarArrayOptions =>
         );
 
         // @ts-ignore
-        if (Array.isArray(item.children))
+        if (isArray(item.children))
           // @ts-ignore
           handleArraySidebarOptions(item.children as unknown[]);
 
@@ -53,15 +54,14 @@ export const convertSidebarOptions = (
   config: unknown
 ): SidebarOptions | false => {
   if (config === false) return false;
-  if (Array.isArray(config)) return handleArraySidebarOptions(config);
+  if (isArray(config)) return handleArraySidebarOptions(config);
 
-  if (typeof config === "object" && config)
+  if (isPlainObject(config) && config)
     return Object.fromEntries(
       Object.entries(config).map<
         [string, SidebarArrayOptions | "structure" | false]
       >(([key, value]) => {
-        if (Array.isArray(value))
-          return [key, handleArraySidebarOptions(value)];
+        if (isArray(value)) return [key, handleArraySidebarOptions(value)];
 
         if (value === "structure" || value === false)
           return [key, <"structure" | false>value];

@@ -3,6 +3,7 @@
 /* Code blocks */
 pre[class*="language-"] {
   overflow: auto;
+  direction: ltr;
 
   > code {
     background: none;
@@ -70,6 +71,14 @@ div[class*="language-"] {
   background: var(--code-bg-color);
   transition: background var(--color-transition);
 
+  // narrow mobile
+  @media (max-width: hope-config.$mobile) {
+    #{hope-config.$content-class} > & {
+      margin: 0.85rem -1.5rem;
+      border-radius: 0;
+    }
+  }
+
   &::before {
     content: attr(data-ext);
 
@@ -102,7 +111,7 @@ div[class*="language-"] {
     width: 100%;
     padding-top: 1rem;
 
-    line-height: 1.4;
+    line-height: 1.375;
 
     user-select: none;
   }
@@ -199,16 +208,6 @@ div[class*="language-"] {
   &:not(.line-numbers-mode) {
     .line-numbers {
       display: none;
-    }
-  }
-}
-
-// narrow mobile
-@media (max-width: hope-config.$mobile) {
-  #{hope-config.$content-class} {
-    > div[class*="language-"] {
-      margin: 0.85rem -1.5rem;
-      border-radius: 0;
     }
   }
 }

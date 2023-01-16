@@ -6,6 +6,8 @@
 
 - Notice (Root Components)
 
+- [ArtPlayer](artplayer.md)
+
 - [AudioPlayer](audioplayer.md)
 
 - [Badge](badge.md)
@@ -19,6 +21,8 @@
 - [FontIcon](fonticon.md)
 
 - [PDF](pdf.md)
+
+- [SiteInfo](siteinfo.md)
 
 - [StackBlitz](stackblitz.md)
 

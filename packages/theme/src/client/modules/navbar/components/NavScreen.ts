@@ -1,16 +1,16 @@
-import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
+import { clearAllBodyScrollLocks, disableBodyScroll } from "body-scroll-lock";
 import {
   Transition,
   defineComponent,
   h,
-  ref,
   onBeforeUnmount,
-  watch,
   onMounted,
+  ref,
+  watch,
 } from "vue";
 import { useRoute } from "vue-router";
 
-import { useMobile } from "@theme-hope/composables/index";
+import { useWindowSize } from "@theme-hope/composables/index";
 import NavScreenLinks from "@theme-hope/modules/navbar/components/NavScreenLinks";
 import OutlookSettings from "@theme-hope/modules/outlook/components/OutlookSettings";
 
@@ -36,7 +36,8 @@ export default defineComponent({
 
   setup(props, { emit, slots }) {
     const route = useRoute();
-    const isMobile = useMobile();
+    const { isMobile } = useWindowSize();
+
     const screen = ref<HTMLElement>();
 
     onMounted(() => {

@@ -136,11 +136,11 @@ interface ImageMarkOptions {
 ```md
 ![VuePress Hope 图标](/favicon.ico)
 
-[![VuePress Hope 图标](/favicon.ico)](https://vuepress-theme-hope.github.io/)
+[![VuePress Hope 图标](/favicon.ico)](https://theme-hope.vuejs.press/)
 
 ![VuePress Hope 图标](/favicon.ico "VuePress Hope 图标")
 
-[![VuePress Hope 图标](/favicon.ico "VuePress Hope 图标")](https://vuepress-theme-hope.github.io/)
+[![VuePress Hope 图标](/favicon.ico "VuePress Hope 图标")](https://theme-hope.vuejs.press/)
 
 ![VuePress Hope 图标](/logo.svg "VuePress Hope 图标" =300x300)
 ```
@@ -149,18 +149,14 @@ interface ImageMarkOptions {
 
 ![VuePress Hope 图标](/favicon.ico)
 
-[![VuePress Hope 图标](/favicon.ico)](https://vuepress-theme-hope.github.io/)
+[![VuePress Hope 图标](/favicon.ico)](https://theme-hope.vuejs.press/)
 
 ![VuePress Hope 图标](/favicon.ico "VuePress Hope 图标")
 
-[![VuePress Hope 图标](/favicon.ico "VuePress Hope 图标")](https://vuepress-theme-hope.github.io/)
+[![VuePress Hope 图标](/favicon.ico "VuePress Hope 图标")](https://theme-hope.vuejs.press/)
 
 ![VuePress Hope 图标](/logo.svg "VuePress Hope 图标" =300x300)
 
 <script setup lang="ts">
 import AppearanceSwitch from "@theme-hope/modules/outlook/components/AppearanceSwitch"
 </script>
-
-```
-
-```

@@ -1,6 +1,6 @@
 {
   "name": "vuepress-plugin-md-enhance",
-  "version": "2.0.0-beta.148",
+  "version": "2.0.0-beta.160",
   "description": "Markdown enhancement plugin for vuepress",
   "keywords": [
     "vuepress",
@@ -17,7 +17,7 @@
     "presentation",
     "reveal.js"
   ],
-  "homepage": "https://vuepress-theme-hope.github.io/v2/md-enhance/",
+  "homepage": "https://plugin-md-enhance.vuejs.press/",
   "bugs": {
     "url": "https://github.com/vuepress-theme-hope/vuepress-theme-hope/issues"
   },
@@ -52,8 +52,13 @@
     "dev:copy": "pnpm copy -w",
     "dev:ts": "tsc -b tsconfig.build.json --watch"
   },
+  "engines": {
+    "node": "^14.18.0 || >=16.0.0",
+    "npm": ">=8",
+    "pnpm": ">=7"
+  },
   "dependencies": {
-    "@babel/core": "^7.20.7",
+    "@babel/core": "^7.20.12",
     "@mdit/plugin-align": "^0.2.3",
     "@mdit/plugin-attrs": "^0.2.3",
     "@mdit/plugin-container": "^0.2.3",
@@ -79,9 +84,9 @@
     "@vuepress/client": "2.0.0-beta.60",
     "@vuepress/shared": "2.0.0-beta.60",
     "@vuepress/utils": "2.0.0-beta.60",
-    "@vueuse/core": "^9.9.0",
+    "@vueuse/core": "^9.10.0",
     "balloon-css": "^1.2.0",
-    "chart.js": "^4.1.1",
+    "chart.js": "^4.1.2",
     "echarts": "^5.4.1",
     "flowchart.js": "^1.17.1",
     "katex": "^0.16.4",
@@ -101,21 +106,28 @@
     "typescript": "4.9.4"
   },
   "peerDependencies": {
+    "@vuepress/client": "2.0.0-beta.60",
     "sass-loader": "^13.2.0",
     "vuepress": "2.0.0-beta.60",
+    "vuepress-plugin-sass-palette": "workspace:*",
+    "vuepress-shared": "workspace:*",
     "vuepress-vite": "2.0.0-beta.60",
     "vuepress-webpack": "2.0.0-beta.60"
   },
-  "engines": {
-    "node": "^14.18.0 || >=16.0.0",
-    "npm": ">=8",
-    "pnpm": ">=7"
-  },
   "peerDependenciesMeta": {
+    "@vuepress/client": {
+      "optional": true
+    },
     "sass-loader": {
       "optional": true
     },
     "vuepress": {
+      "optional": true
+    },
+    "vuepress-plugin-sass-palette": {
+      "optional": true
+    },
+    "vuepress-shared": {
       "optional": true
     },
     "vuepress-vite": {

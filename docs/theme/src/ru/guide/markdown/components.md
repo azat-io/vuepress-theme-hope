@@ -12,6 +12,7 @@ tag:
 
 Доступные компоненты:
 
+- ArtPlayer
 - AudioPlayer
 - Badge
 - BiliBili
@@ -19,6 +20,7 @@ tag:
 - CodePen
 - FontIcon
 - PDF
+- SiteInfo
 - StackBlitz
 - VideoPlayer
 - YouTube
@@ -90,6 +92,76 @@ export default {
 
 :::
 
+## ArtPlayer
+
+A video player:
+
+<ArtPlayer src="https://mse-demo.u2sb.com/caminandes_03_llamigos_720p.mp4" />
+
+```md
+<ArtPlayer src="https://mse-demo.u2sb.com/caminandes_03_llamigos_720p.mp4" />
+```
+
+A video player with poster:
+
+<ArtPlayer
+  src="https://mse-demo.u2sb.com/caminandes_03_llamigos_720p.mp4"
+  poster="/poster.svg"
+/>
+
+```md
+<ArtPlayer
+  src="https://mse-demo.u2sb.com/caminandes_03_llamigos_720p.mp4"
+  poster="/poster.svg"
+/>
+```
+
+A video player with custom settings:
+
+<ArtPlayer
+  src="https://mse-demo.u2sb.com/caminandes_03_llamigos_720p.mp4"
+  airplay
+  aspect-ratio
+  auto-size
+  auto-orientation
+  auto-playback
+  fast-forward
+  flip
+  fullscreen-web
+  lock
+  loop
+  is-live
+  muted
+  mini-progress-bar
+  pip
+  screenshot
+  subtitle-offset
+/>
+
+```md
+<ArtPlayer
+  src="https://mse-demo.u2sb.com/caminandes_03_llamigos_720p.mp4"
+  airplay
+  aspect-ratio
+  auto-size
+  auto-orientation
+  auto-playback
+  fast-forward
+  flip
+  fullscreen-web
+  lock
+  loop
+  is-live
+  muted
+  mini-progress-bar
+  pip
+  screenshot
+  subtitle-offset
+/>
+```
+
+See <ProjectLink name="components" path="/guide/artplayer.html">ArtPlayer</ProjectLink> page for available props.
+
 ## AudioPlayer
 
 An audio player:
@@ -116,7 +188,7 @@ An audio player with poster and title:
 />
 ```
 
-See [AudioPlayer][audioplayer] page for available props.
+See <ProjectLink name="components" path="/guide/audioplayer.html">AudioPlayer</ProjectLink> page for available props.
 
 ## Значок
 
@@ -128,7 +200,7 @@ See [AudioPlayer][audioplayer] page for available props.
 - <Badge text="info" type="info" vertical="middle" />
 - <Badge text="note" type="note" vertical="middle" />
 
-Доступные свойства смотрите на странице [Значок][badge].
+Доступные свойства смотрите на странице <ProjectLink name="components" path="/guide/badge.html">Значок</ProjectLink>.
 
 ## BiliBili
 
@@ -158,7 +230,7 @@ See [AudioPlayer][audioplayer] page for available props.
 <BiliBili bvid="BV1kt411o7C3" low-quality no-danmaku />
 ```
 
-Смотрите страницу [BiliBili][bilibili] для доступных свойств.
+Смотрите страницу <ProjectLink name="components" path="/guide/bilibili.html">BiliBili</ProjectLink> для доступных свойств.
 
 ## Catalog
 
@@ -178,7 +250,7 @@ Home page catalog:
 <Catalog base='/ru/' />
 ```
 
-See [Catalog][catalog] page for available props.
+See <ProjectLink name="components" path="/guide/catalog.html">Catalog</ProjectLink> page for available props.
 
 ## CodePen
 
@@ -186,7 +258,7 @@ See [Catalog][catalog] page for available props.
 
 Демонстрация с пользователем и слаг-хешем:
 
-<CodePen user="kowlor" slug-hash="ZYYQoy" title="Solar System animation - Pure CSS" :default-tab="['css','result']" :theme="$isDarkMode? 'dark': 'light'" />
+<CodePen user="kowlor" slug-hash="ZYYQoy" title="Solar System animation - Pure CSS" :default-tab="['css','result']" :theme="$isDarkmode? 'dark': 'light'" />
 
 ```md
 <CodePen
@@ -194,26 +266,26 @@ See [Catalog][catalog] page for available props.
   slug-hash="ZYYQoy"
   title="Solar System animation - Pure CSS"
   :default-tab="['css','result']"
-  :theme="$isDarkMode? 'dark': 'light'"
+  :theme="$isDarkmode? 'dark': 'light'"
 />
 ```
 
 Демо со ссылкой:
 
-<CodePen link="https://codepen.io/kowlor/pen/ZYYQoy" title="Solar System animation - Pure CSS" :default-tab="['css','result']" :theme="$isDarkMode? 'dark': 'light'" />
+<CodePen link="https://codepen.io/kowlor/pen/ZYYQoy" title="Solar System animation - Pure CSS" :default-tab="['css','result']" :theme="$isDarkmode? 'dark': 'light'" />
 
 ```md
 <CodePen
   link="https://codepen.io/kowlor/pen/ZYYQoy"
   title="Solar System animation - Pure CSS"
   :default-tab="['css','result']"
-  :theme="$isDarkMode? 'dark': 'light'"
+  :theme="$isDarkmode? 'dark': 'light'"
 />
 ```
 
 Нажмите, чтобы запустить демонстрацию:
 
-<CodePen link="https://codepen.io/keginaring/pen/XWZazwW" title="Solar System animation - Pure CSS" status="clicktorun" :theme="$isDarkMode? 'dark': 'light'" />
+<CodePen link="https://codepen.io/keginaring/pen/XWZazwW" title="Solar System animation - Pure CSS" status="clicktorun" :theme="$isDarkmode? 'dark': 'light'" />
 
 ```md
 <CodePen
@@ -221,11 +293,11 @@ See [Catalog][catalog] page for available props.
   title="Envelope w/ Hearts"
   status="clicktorun"
   :default-tab="['css','result']"
-  :theme="$isDarkMode? 'dark': 'light'"
+  :theme="$isDarkmode? 'dark': 'light'"
 />
 ```
 
-Доступные свойства смотрите на странице [CodePen][codepen].
+Доступные свойства смотрите на странице <ProjectLink name="components" path="/guide/codepen.html">CodePen</ProjectLink>.
 
 ## FontIcon
 
@@ -239,7 +311,7 @@ See [Catalog][catalog] page for available props.
 - A big and red markdown icon: <FontIcon icon="markdown" color="red" size="32" />
 ```
 
-Доступные свойства смотрите на странице [FontIcon][fonticon].
+Доступные свойства смотрите на странице <ProjectLink name="components" path="/guide/fonticon.html">FontIcon</ProjectLink>.
 
 ## PDF
 
@@ -261,7 +333,41 @@ See [Catalog][catalog] page for available props.
 <PDF url="/assets/sample.pdf" page="2" no-toolbar />
 ```
 
-Доступные свойства смотрите на странице [PDF][pdf].
+Доступные свойства смотрите на странице <ProjectLink name="components" path="/guide/pdf.html">PDF</ProjectLink>.
+
+## SiteInfo
+
+Basic site info:
+
+<SiteInfo name="Mr.Hope’s Blog" url="https://mrhope.site" preview="https://theme-hope.vuejs.press/assets/image/mrhope.jpg" />
+
+```md
+<SiteInfo name="Mr.Hope’s Blog" url="https://mrhope.site" preview="https://theme-hope.vuejs.press/assets/image/mrhope.jpg" />
+```
+
+Site info with more properties:
+
+<SiteInfo
+  name="Mr.Hope’s Blog"
+  desc="Where there is light, there is hope"
+  url="https://mrhope.site"
+  logo="https://mrhope.site/logo.svg"
+  repo="https://github.com/Mister-Hope/Mister-Hope.github.io"
+  preview="https://theme-hope.vuejs.press/assets/image/mrhope.jpg"
+/>
+
+```md
+<SiteInfo
+  name="Mr.Hope’s Blog"
+  desc="Where there is light, there is hope"
+  url="https://mrhope.site"
+  logo="https://mrhope.site/logo.svg"
+  repo="https://github.com/Mister-Hope/Mister-Hope.github.io"
+  preview="https://theme-hope.vuejs.press/assets/image/mrhope.jpg"
+/>
+```
+
+See <ProjectLink name="components" path="/guide/siteinfo.html">SiteInfo</ProjectLink> page for available props.
 
 ## StackBlitz
 
@@ -283,7 +389,7 @@ See [Catalog][catalog] page for available props.
 <StackBlitz id="vuepress-theme-hope" hideExplorer hideNavigation hideDevtools />
 ```
 
-Доступные свойства смотрите на странице [StackBlitz][stackblitz].
+Доступные свойства смотрите на странице <ProjectLink name="components" path="/guide/stackblitz.html">StackBlitz</ProjectLink>.
 
 ## VideoPlayer
 
@@ -341,7 +447,7 @@ See [Catalog][catalog] page for available props.
 />
 ```
 
-Смотрите страницу [VideoPlayer][videoplayer] для доступных свойств.
+Смотрите страницу <ProjectLink name="components" path="/guide/videoplayer.html">VideoPlayer</ProjectLink> для доступных свойств.
 
 ## YouTube
 
@@ -371,15 +477,4 @@ See [Catalog][catalog] page for available props.
 <YouTube list-type="playlist" list="PLJNLwTPak6dhCRzVelZIs2-DfBp01NX_1" />
 ```
 
-Доступные свойства смотрите на странице [YouTube][youtube].
-
-[audioplayer]: https://vuepress-theme-hope.github.io/v2/components/guide/audioplayer.html
-[badge]: https://vuepress-theme-hope.github.io/v2/components/guide/badge.html
-[bilibili]: https://vuepress-theme-hope.github.io/v2/components/guide/bilibili.html
-[catalog]: https://vuepress-theme-hope.github.io/v2/components/guide/catalog.html
-[codepen]: https://vuepress-theme-hope.github.io/v2/components/guide/codepen.html
-[fonticon]: https://vuepress-theme-hope.github.io/v2/components/guide/fonticon.html
-[pdf]: https://vuepress-theme-hope.github.io/v2/components/guide/pdf.html
-[stackblitz]: https://vuepress-theme-hope.github.io/v2/components/guide/stackblitz.html
-[videoplayer]: https://vuepress-theme-hope.github.io/v2/components/guide/videoplayer.html
-[youtube]: https://vuepress-theme-hope.github.io/v2/components/guide/youtube.html
+Доступные свойства смотрите на странице <ProjectLink name="components" path="/guide/youtube.html">YouTube</ProjectLink>.

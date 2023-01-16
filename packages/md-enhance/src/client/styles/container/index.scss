@@ -8,30 +8,36 @@
   --info-title-color: #193c47;
   --info-bg-color: #eef9fd;
   --info-border-color: #4cb3d4;
+  --info-code-bg-color: rgb(76 179 212 / 10%);
 
   // note
   --note-title-color: #474748;
   --note-bg-color: #fdfdfe;
-  --note-border-color: #d4d5d8;
+  --note-border-color: #ccc;
+  --note-code-bg-color: rgb(212 213 216 / 20%);
 
   // tip
   --tip-title-color: #003100;
   --tip-bg-color: #e6f6e6;
   --tip-border-color: #009400;
+  --tip-code-bg-color: rgb(0 148 0 / 15%);
 
   // warning
   --warning-title-color: #4d3800;
   --warning-bg-color: #fff8e6;
   --warning-border-color: #e6a700;
+  --warning-code-bg-color: rgb(230 167 0 / 15%);
 
   // danger
   --danger-title-color: #4b1113;
   --danger-bg-color: #ffebec;
   --danger-border-color: #e13238;
+  --danger-code-bg-color: rgb(225 50 56 / 15%);
 
   // detail
   --detail-bg-color: #eee;
   --detail-text-color: inherit;
+  --detail-code-bg-color: rgb(127 127 127 / 15%);
 }
 
 #{hope-config.$dark-selector} {
@@ -62,8 +68,8 @@
 
 .hint-container {
   position: relative;
-  transition: background var(--color-transition),
-    border-color var(--color-transition), color var(--color-transition);
+  transition: background var(--t-color, 0.3s ease),
+    border-color var(--t-color, 0.3s ease), color var(--t-color, 0.3s ease);
 
   @media print {
     page-break-inside: avoid;
@@ -82,27 +88,31 @@
   &.danger {
     margin: 1rem 0;
     padding: 0.25rem 1rem;
-    border-left-width: 0.3rem;
-    border-left-style: solid;
+    border-inline-start-width: 0.3rem;
+    border-inline-start-style: solid;
     border-radius: 0.5rem;
 
     color: inherit;
 
     .hint-container-title {
-      padding-left: 1.5rem;
+      padding-inline-start: 1.75rem;
 
       @media print {
-        padding-left: 0;
+        padding-inline-start: 0;
       }
 
       &::before {
         content: " ";
 
         position: absolute;
-        left: 0;
+        top: calc(50% - 0.6125em);
 
-        width: 20px;
-        height: 20px;
+        // NOTE: Compatible with Android Wechat
+        left: 0;
+        inset-inline-start: 0;
+
+        width: 1.25em;
+        height: 1.25em;
 
         background-position: left;
         background-repeat: no-repeat;
@@ -126,16 +136,16 @@
     border-color: var(--info-border-color);
     background: var(--info-bg-color);
 
-    .hint-container-title {
+    > .hint-container-title {
       color: var(--info-title-color);
 
       &::before {
         @include svg.background-svg(icons.$info-icon);
-
-        #{hope-config.$dark-selector} & {
-          @include svg.background-svg(icons.$info-dark-icon);
-        }
       }
+    }
+
+    code {
+      background: var(--info-code-bg-color);
     }
   }
 
@@ -143,16 +153,16 @@
     border-color: var(--note-border-color);
     background: var(--note-bg-color);
 
-    .hint-container-title {
+    > .hint-container-title {
       color: var(--note-title-color);
 
       &::before {
         @include svg.background-svg(icons.$note-icon);
-
-        #{hope-config.$dark-selector} & {
-          @include svg.background-svg(icons.$note-dark-icon);
-        }
       }
+    }
+
+    code {
+      background: var(--note-code-bg-color);
     }
   }
 
@@ -160,16 +170,16 @@
     border-color: var(--tip-border-color);
     background: var(--tip-bg-color);
 
-    .hint-container-title {
+    > .hint-container-title {
       color: var(--tip-title-color);
 
       &::before {
         @include svg.background-svg(icons.$tip-icon);
-
-        #{hope-config.$dark-selector} & {
-          @include svg.background-svg(icons.$tip-dark-icon);
-        }
       }
+    }
+
+    code {
+      background: var(--tip-code-bg-color);
     }
   }
 
@@ -177,16 +187,16 @@
     border-color: var(--warning-border-color);
     background: var(--warning-bg-color);
 
-    .hint-container-title {
+    > .hint-container-title {
       color: var(--warning-title-color);
 
       &::before {
         @include svg.background-svg(icons.$warning-icon);
-
-        #{hope-config.$dark-selector} & {
-          @include svg.background-svg(icons.$warning-dark-icon);
-        }
       }
+    }
+
+    code {
+      background: var(--warning-code-bg-color);
     }
   }
 
@@ -194,16 +204,16 @@
     border-color: var(--danger-border-color);
     background: var(--danger-bg-color);
 
-    .hint-container-title {
+    > .hint-container-title {
       color: var(--danger-title-color);
 
       &::before {
         @include svg.background-svg(icons.$danger-icon);
-
-        #{hope-config.$dark-selector} & {
-          @include svg.background-svg(icons.$danger-dark-icon);
-        }
       }
+    }
+
+    code {
+      background: var(--danger-code-bg-color);
     }
   }
 }
@@ -220,8 +230,8 @@
   background: var(--detail-bg-color);
   color: var(--detail-text-color);
 
-  transition: background var(--transform-transition),
-    color var(--transform-transition);
+  transition: background var(--t-transform, 0.3s ease),
+    color var(--t-transform, 0.3s ease);
 
   @media print {
     display: none;
@@ -243,11 +253,18 @@
     color: var(--c-brand, #3eaf7c);
   }
 
+  code {
+    background: var(--detail-code-bg-color);
+  }
+
   summary {
     position: relative;
 
     margin: -1.5rem;
-    padding: 1.5rem 1.5rem 1.5rem 4rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-inline-start: 4rem;
+    padding-inline-end: 1.5rem;
 
     list-style: none;
 
@@ -266,7 +283,10 @@
 
       position: absolute;
       top: calc(50% - 0.75rem);
+
+      // NOTE: Compatible with Android Wechat
       left: 1.5rem;
+      inset-inline-start: 1.5rem;
 
       width: 1.5rem;
       height: 1.5rem;
@@ -279,8 +299,8 @@
     &::before {
       border-radius: 50%;
       background: #ccc;
-      transition: background var(--color-transition),
-        transform var(--transform-transition);
+      transition: background var(--t-color, 0.3s ease),
+        transform var(--t-transform, 0.3s ease);
 
       #{hope-config.$dark-selector} & {
         background: #555;
@@ -290,7 +310,7 @@
     &::after {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='rgba(0,0,0,0.5)' d='M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z'/%3E%3C/svg%3E");
       line-height: normal;
-      transition: transform var(--transform-transition);
+      transition: transform var(--t-transform, 0.3s ease);
       transform: rotate(90deg);
 
       #{hope-config.$dark-selector} & {

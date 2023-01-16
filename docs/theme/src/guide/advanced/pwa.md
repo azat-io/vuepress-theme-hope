@@ -8,7 +8,7 @@ tag:
   - PWA
 ---
 
-The theme provides progressive web app support [^pwa-intro] via built-in [`vuepress-plugin-pwa2`][pwa2], and it’s disabled by default.
+The theme provides progressive web app support [^pwa-intro] via built-in <ProjectLink name="pwa2">`vuepress-plugin-pwa2`</ProjectLink>, and it’s disabled by default.
 
 [^pwa-intro]: **PWA introduction**
 
@@ -96,9 +96,9 @@ If you have small sites, and would like to make document fully offline available
 
 ::: tip Why only home and 404 page been cached by default?
 
-Though VuePress generates HTML files through SSR[^ssr] for all pages, these files are mainly used for SEO[^seo] and allow you to directly configure the backend without SPA[^spa] Visit any link.
+Though VuePress generates HTML files through SSG[^ssg] for all pages, these files are mainly used for SEO[^seo] and allow you to directly configure the backend without SPA[^spa] Visit any link.
 
-[^ssr]: **SSR**: **S**erver **S**ide **R**endering,
+[^ssg]: **SSG**: **S**tatic **S**ite **G**neration,
 [^seo]: **SEO**: **S**earch **E**ngine **O**ptimization.
 [^spa]: **SPA**: **S**ingle **P**age **A**pplication, most of them only have the homepage, and use history mode to handle routing instead of actually navigating between pages.
 
@@ -222,9 +222,7 @@ You can set them as needed. For detailed options, please see [PWA config](../../
 
 For more details, please see:
 
-- [PWA plugin docs][pwa2]
+- <ProjectLink name="pwa2">PWA plugin docs</ProjectLink>
 - [Google PWA](https://web.dev/progressive-web-apps/)
 - [MDN PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)
 - [W3C Manifest Specification](https://w3c.github.io/manifest/)
-
-[pwa2]: https://vuepress-theme-hope.github.io/v2/pwa/

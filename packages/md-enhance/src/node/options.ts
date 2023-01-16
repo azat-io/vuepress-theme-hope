@@ -8,11 +8,11 @@ import type {
   KatexOptions,
   MarkdownEnhanceLocaleData,
   MathjaxOptions,
-  StylizeOptions,
   PlaygroundOptions,
   PresentationOptions,
-  TasklistOptions,
+  StylizeOptions,
   TSPresetPlaygroundOptions,
+  TasklistOptions,
   VuePresetPlaygroundOptions,
 } from "./typings/index.js";
 import type { CodeDemoOptions, VuePlaygroundOptions } from "../shared/index.js";
@@ -24,9 +24,9 @@ export interface MarkdownEnhanceOptions {
   /**
    * Whether check dead links in markdown
    *
-   * @description `true` equals to `'always'`, `false` equals to `'never'`
+   * @description `true` equals to `"always"`, `false` equals to `"never"`
    *
-   * @default 'dev'
+   * @default "dev"
    */
   linkCheck?: "always" | "dev" | "build" | "never" | boolean;
 
@@ -199,7 +199,7 @@ export interface MarkdownEnhanceOptions {
    *
    * @default false
    */
-  include?: IncludeOptions | boolean;
+  include?: Partial<IncludeOptions> | boolean;
 
   /**
    * Whether to enable katex support

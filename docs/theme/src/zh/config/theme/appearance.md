@@ -85,6 +85,19 @@ tag:
 
 :::
 
+## wideBreakPoint <Badge text="仅限 Root" type="warning" />
+
+- 类型: `number`
+- 默认值: `1440`
+
+切换桌面布局和宽屏布局的窗口宽度，单位像素。
+
+::: warning
+
+你需要将此选项和 `.vuepress/config.scss` 中的 `$pc` 保持一致。
+
+:::
+
 ## pure <Badge text="仅限 Root" type="warning" />
 
 - 类型: `boolean`
@@ -100,6 +113,13 @@ tag:
 当你想提供“纯文档站点”时很有用。
 
 :::
+
+## print <Badge text="仅限 Root" type="warning" />
+
+- 类型: `boolean`
+- 默认值: `true`
+
+是否在桌面模式下显示打印按钮。
 
 ## iconPrefix <Badge text="仅限 Root" type="warning" />
 

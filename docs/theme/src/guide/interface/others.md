@@ -14,11 +14,17 @@ The theme allows you to set variables in `.vuepress/styles/config.scss` and `.vu
 
 For detailed info, please see [Config → Style Customize](../../config/style.md)
 
+## Print Button
+
+The theme fully optimize style for print, and there will be a print button at toc in desktop mode by default.
+
+To hide print button, you should set `print: false` in theme options.
+
 ## Fullscreen Button
 
 <ToggleFullScreenButton />
 
-If you need it, you can enable it by setting `fullscreen: true` in the theme options.
+If you need it, you can enable it by setting `fullscreen: true` in theme options.
 
 ::: tip
 
@@ -63,6 +69,24 @@ export default defineUserConfig({
 `vuepress-theme-hope` adds a back-to-top control which will display after scrolling down 300px by default.
 
 You can set `backToTop: false` in theme options to disable it, or set it to a number to change the default trigger distance.
+
+## RTL Layout
+
+`vuepress-theme-hope` basically supports RTL layout. Just add the following style to `.vuepress/style/index.scss`
+
+```scss
+html {
+  direction: rtl;
+}
+```
+
+You will see that almost everything works fine.
+
+::: note
+
+As we mention above, the theme **basically** supports RTL layout, because not every css property has a "direction adaptive" value, e.g.: `float: right` `transform: translateX(10px)`, so you may still need to handle some layouts yourself.
+
+:::
 
 <script setup lang="ts">
 import ToggleFullScreenButton from "@theme-hope/modules/outlook/components/ToggleFullScreenButton";

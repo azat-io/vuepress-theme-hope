@@ -9,6 +9,7 @@ icon: config
 
   ```ts
   type AvailableComponent =
+    | "ArtPlayer"
     | "AudioPlayer"
     | "Badge"
     | "BiliBili"
@@ -26,6 +27,7 @@ icon: config
 
 可接受的组件名称为:
 
+- `"ArtPlayer"`
 - `"AudioPlayer"`
 - `"Badge"`
 - `"BiliBili"`
@@ -39,6 +41,13 @@ icon: config
 ## componentsOptions
 
 组件的全局配置
+
+### componentsOptions.artPlayer
+
+- 类型: `ComponentsArtPlayerOptions`
+- 默认值: `{}`
+- 详情:
+  - [指南 → ArtPlayer](./guide/artplayer.md#全局配置)
 
 ### componentsOptions.fontIcon.assets
 
@@ -94,7 +103,24 @@ AddThis 的公开 ID。
 - Type: `NoticeOptions`
 
   ```ts
-  interface NoticeLocaleOptions {
+  interface NoticeActionOption {
+    /**
+     * 操作文字
+     */
+    text: string;
+    /**
+     * 操作链接
+     */
+    link?: string;
+    /**
+     * 操作类型
+     *
+     * @default 'default
+     */
+    type?: "primary" | "default";
+  }
+
+  interface NoticeItemOptions {
     /**
      * 通知标题
      */
@@ -106,33 +132,6 @@ AddThis 的公开 ID。
     content: string;
 
     /**
-     * 通知操作
-     */
-    actions: {
-      /**
-       * 操作文字
-       */
-      text: string;
-      /**
-       * 操作链接
-       */
-      link?: string;
-      /**
-       * 操作类型
-       *
-       * @default 'default
-       */
-      type?: "primary" | "default";
-    }[];
-  }
-
-  interface NoticeOptions {
-    /**
-     * Notice 多语言选项
-     */
-    locales: Record<string, NoticeLocaleOptions>;
-
-    /**
      * Notice 的 key
      *
      * @description 用于标识和存储 notice 的状态
@@ -142,11 +141,9 @@ AddThis 的公开 ID。
     /**
      * 是否只显示一次通知
      *
-     * @description 如果没有提供 `key`，此选项将被忽略
-     *
      * @default false
      */
-    showOnce?: string;
+    showOnce?: boolean;
 
     /**
      * 通知是否需要确认
@@ -161,7 +158,15 @@ AddThis 的公开 ID。
      * @default false
      */
     fullscreen?: boolean;
+
+    /**
+     * 通知操作
+     */
+    actions?: NoticeActionOption[];
   }
+
+  type NoticeOptions = NoticeItemOptions &
+    ({ path: string } | { match: RegExp });
   ```
 
 - 必填: 否
@@ -216,6 +221,30 @@ AddThis 的公开 ID。
 
 目录组件国际化配置。
 
+### locales.pdf
+
+- 类型: `PDFLocaleConfig`
+
+  ```ts
+  interface PDFLocaleData {
+    /**
+     * PDF 提示文字
+     *
+     * @description 只有在浏览器不支持嵌入 PDF 且没有提供 PDFJS URL 时才会使用
+     * [url] 会被实际 PDF 链接替换
+     */
+    hint: string;
+  }
+
+  interface PDFLocaleConfig {
+    [localePath: string]: PDFLocaleData;
+  }
+  ```
+
+- 必填: 否
+
+PDF 组件国际化配置。
+
 ::: details 内置支持语言
 
 - **简体中文** (zh-CN)
@@ -233,5 +262,6 @@ AddThis 的公开 ID。
 - **日语** (ja-JP)
 - **土耳其语** (tr-TR)
 - **韩语** (ko-KR)
+- **芬兰语** (fi-FI)
 
 :::

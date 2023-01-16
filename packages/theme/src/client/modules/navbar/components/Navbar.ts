@@ -1,7 +1,10 @@
 import { computed, defineComponent, h, ref, resolveComponent } from "vue";
 import { hasGlobalComponent } from "vuepress-shared/client";
 
-import { useMobile, useThemeLocaleData } from "@theme-hope/composables/index";
+import {
+  useThemeLocaleData,
+  useWindowSize,
+} from "@theme-hope/composables/index";
 import LanguageDropdown from "@theme-hope/modules/navbar/components/LanguageDropdown";
 import NavbarBrand from "@theme-hope/modules/navbar/components/NavbarBrand";
 import NavbarLinks from "@theme-hope/modules/navbar/components/NavbarLinks";
@@ -30,12 +33,12 @@ export default defineComponent({
 
   setup(_props, { emit, slots }) {
     const themeLocale = useThemeLocaleData();
+    const { isMobile } = useWindowSize();
 
-    const isMobile = useMobile();
     const showScreen = ref(false);
 
     const autoHide = computed(() => {
-      const { navbarAutoHide } = themeLocale.value;
+      const { navbarAutoHide = "mobile" } = themeLocale.value;
 
       return (
         navbarAutoHide !== "none" &&
@@ -78,9 +81,10 @@ export default defineComponent({
               "navbar",
               {
                 "auto-hide": autoHide.value,
-                "hide-icon": !themeLocale.value.navbarIcon,
+                "hide-icon": themeLocale.value.navbarIcon === false,
               },
             ],
+            id: "navbar",
           },
           [
             h("div", { class: "navbar-left" }, [

@@ -1,10 +1,12 @@
 .footer-wrapper {
+  position: relative;
+
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-evenly;
 
-  padding: 0.75rem 2rem 0.75rem calc(var(--sidebar-width) + 2rem);
+  padding: 0.75rem 2rem 0.75rem calc(var(--sidebar-space) + 2rem);
   border-top: 1px solid var(--border-color);
 
   background: var(--bg-color);
@@ -13,9 +15,14 @@
   text-align: center;
 
   transition: border-top-color var(--color-transition),
-    background var(--color-transition);
+    background var(--color-transition), padding var(--transform-transition);
 
   @media (max-width: hope-config.$tablet) {
+    padding-left: 2rem;
+  }
+
+  @media (min-width: hope-config.$pc) {
+    z-index: 150;
     padding-left: 2rem;
   }
 
@@ -38,6 +45,10 @@
   .footer {
     margin: 0.5rem 1rem;
     font-size: 14px;
+
+    @media print {
+      display: none;
+    }
   }
 
   .copyright {

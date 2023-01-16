@@ -11,6 +11,20 @@ export default [
     ],
     copy: [["client/styles", "client"]],
   }),
+  ...rollupTypescript("client/components/ArtPlayer", {
+    external: [
+      "@vuepress/client",
+      "@vuepress/shared",
+      "@vueuse/core",
+      "artplayer",
+      "dashjs/dist/dash.all.min.js",
+      "hls.js/dist/hls.min.js",
+      "mpegts.js/dist/mpegts.js",
+      "vue",
+      /\.s?css$/,
+    ],
+    dtsExternal: [/\.s?css$/],
+  }),
   ...rollupTypescript("client/components/AudioPlayer", {
     external: [
       "@vuepress/client",
@@ -27,7 +41,13 @@ export default [
     dtsExternal: [/\.scss$/],
   }),
   ...rollupTypescript("client/components/BiliBili", {
-    external: ["@vueuse/core", "vue", "vuepress-shared/client", /\.scss$/],
+    external: [
+      "@vueuse/core",
+      "@vuepress/shared",
+      "vue",
+      "vuepress-shared/client",
+      /\.scss$/,
+    ],
     dtsExternal: [/\.scss$/],
   }),
   ...rollupTypescript("client/components/BackToTop", {
@@ -59,7 +79,13 @@ export default [
     dtsExternal: [/\.scss$/],
   }),
   ...rollupTypescript("client/components/Notice", {
-    external: ["vue", "vue-router", "vuepress-shared/client", /\.scss$/],
+    external: [
+      "@vuepress/shared",
+      "vue",
+      "vue-router",
+      "vuepress-shared/client",
+      /\.scss$/,
+    ],
     dtsExternal: [/\.scss$/],
   }),
   ...rollupTypescript("client/components/PDF", {
@@ -73,12 +99,28 @@ export default [
     ],
     dtsExternal: [/\.scss$/],
   }),
+  ...rollupTypescript("client/components/SiteInfo", {
+    external: [
+      "@vuepress/client",
+      "@vuepress/shared",
+      "vue",
+      "vuepress-shared/client",
+      /\.scss$/,
+    ],
+    dtsExternal: [/\.scss$/],
+  }),
   ...rollupTypescript("client/components/StackBlitz", {
-    external: ["@vueuse/core", "vue", /\.scss$/],
+    external: ["@vueuse/core", "@vuepress/shared", "vue", /\.scss$/],
     dtsExternal: [/\.scss$/],
   }),
   ...rollupTypescript("client/components/YouTube", {
-    external: ["@vueuse/core", "@vuepress/client", "vue", /\.scss$/],
+    external: [
+      "@vueuse/core",
+      "@vuepress/shared",
+      "@vuepress/client",
+      "vue",
+      /\.scss$/,
+    ],
     dtsExternal: [/\.scss$/],
   }),
   ...rollupTypescript("client/components/VideoPlayer", {

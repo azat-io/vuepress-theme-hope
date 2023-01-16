@@ -80,8 +80,8 @@ export default {
 - `@theme-hope/components/AutoLink`: основная ссылка
 - `@theme-hope/components/BreadCrumb`: хлебная крошка
 - `@theme-hope/components/CommonWrapper`: базовая интеграция макета
-- `@theme-hope/components/HomeFeatures`: функции главной страницы
-- `@theme-hope/components/HomeHero`: логотип главной страницы и введение
+- `@theme-hope/components/FeaturePanel`: функции главной страницы
+- `@theme-hope/components/HeroInfo`: логотип главной страницы и введение
 - `@theme-hope/components/HomePage`: главная страница
 - `@theme-hope/components/Icon`: иконка
 - `@theme-hope/components/MarkdownContent`: контент разметки
@@ -150,7 +150,7 @@ export default {
 - `@theme-hope/modules/info/components/AuthorInfo`: информация об авторе
 - `@theme-hope/modules/info/components/CategoryInfo`: информация о категории
 - `@theme-hope/modules/info/components/DateInfo`: информация о дате
-- `@theme-hope/modules/info/components/OriginalMark`: оригинальное выделение
+- `@theme-hope/modules/info/components/OriginalInfo`: оригинальное выделение
 - `@theme-hope/modules/info/components/PageInfo`: информация о странице
 - `@theme-hope/modules/info/components/PageMeta`: метаинформация страницы
 - `@theme-hope/modules/info/components/PageViewInfo`: информация о просмотрах страниц
@@ -285,7 +285,7 @@ import HopeHomePage from "vuepress-theme-hope/components/HomePage.js";
 
 - `AutoLink`: `default`, `before`, `after`
 - `CommonWrapper`: `default`, `navbarLeftStart`, `navbarLeftEnd`, `navbarCenterStart`, `navbarCenterEnd`, `navbarRightStart`, `navbarRightEnd`, `navScreenTop`, `navScreenBottom`, `sidebar`, `sidebarTop`, `sidebarBottom`
-- `HomeHero`: `heroImage`, `heroInfo`
+- `HeroInfo`: `heroImage`, `heroInfo`
 - `HomePage`: `top`, `center`, `bottom`
 - `NormalPage`: `top`, `contentBefore`, `contentAfter`, `bottom`
 

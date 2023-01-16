@@ -46,13 +46,13 @@ export interface NavbarLocaleOptions {
    *
    * @description Set to `false` to disable navbar in current locale
    *
-   * @see https://vuepress-theme-hope.github.io/v2/guide/layout/navbar.html
+   * @see https://theme-hope.vuejs.vuepress/guide/layout/navbar.html
    *
    * 导航栏配置
    *
    * @description 设置 `false` 以在当前语言中禁用导航栏
    *
-   * @see https://vuepress-theme-hope.gitee.io/v2/zh/guide/layout/navbar.html
+   * @see https://theme-hope.vuejs.vuepress/v2/zh/guide/layout/navbar.html
    */
   navbar?: NavbarOptions | false;
 
@@ -115,7 +115,7 @@ export interface NavbarLocaleOptions {
    *
    * 是否在向下滚动时自动隐藏导航栏
    *
-   * @default 'mobile'
+   * @default "mobile"
    */
   navbarAutoHide?: "always" | "mobile" | "none";
 

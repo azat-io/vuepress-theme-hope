@@ -7,10 +7,18 @@ heroText: vuepress-plugin-feed2
 tagline: Feed plugin for VuePress2
 actions:
   - text: Docs
-    link: https://vuepress-theme-hope.github.io/v2/feed/
+    link: https://plugin-feed2.vuejs.press
 
 footer: MIT Licensed, Copyright © 2019-present Mr.Hope
 ---
+
+<template v-if="!isDev">
+
+- [Atom Feed](/atom.xml)
+- [JSON Feed](/feed.json)
+- [RSS Feed](/rss.xml)
+
+</template>
 
 ## How to use
 
@@ -34,3 +42,7 @@ export default {
   ],
 };
 ```
+
+<script setup>
+const isDev = __VUEPRESS_DEV__;
+</script>

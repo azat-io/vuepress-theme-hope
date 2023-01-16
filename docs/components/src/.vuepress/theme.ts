@@ -1,11 +1,13 @@
 import { createRequire } from "node:module";
-import { fs, pwa, theme } from "docs-shared";
+import { fs, theme } from "docs-shared";
 
 const { version } = fs.readJsonSync(
   createRequire(import.meta.url).resolve(
     "vuepress-plugin-components/package.json"
   )
 );
+
+const IS_NETLIFY = "NETLIFY" in process.env;
 
 export default theme("components", {
   locales: {
@@ -73,12 +75,14 @@ export default theme("components", {
   plugins: {
     components: {
       components: [
+        "ArtPlayer",
         "AudioPlayer",
         "Badge",
         "BiliBili",
         "Catalog",
         "CodePen",
         "PDF",
+        "SiteInfo",
         "StackBlitz",
         "VideoPlayer",
         "YouTube",
@@ -92,17 +96,40 @@ export default theme("components", {
 
       rootComponents: {
         addThis: "ra-5f829c59e6c6bc9a",
+        ...(IS_NETLIFY
+          ? {}
+          : {
+              notice: [
+                {
+                  path: "/",
+                  title: "New docs location",
+                  content: "Our docs has moved to a new domain vuejs.press",
+                  actions: [
+                    {
+                      text: "Visit Now",
+                      link: "https://plugin-components.vuejs.press",
+                    },
+                  ],
+                },
+                {
+                  path: "/zh/",
+                  title: "新的文档地址",
+                  content: "我们的文档已经迁移至新域名 vuejs.press 下。",
+                  actions: [
+                    {
+                      text: "立即访问",
+                      link: "https://plugin-components.vuejs.press/zh/",
+                    },
+                  ],
+                },
+              ],
+            }),
       },
     },
 
     mdEnhance: {
       codetabs: true,
+      include: true,
     },
-
-    pwa: pwa({
-      name: "vuepress-plugin-components",
-      shortName: "VuePress2 Components Lib",
-      guide: "/guide/",
-    }),
   },
 });

@@ -1,6 +1,7 @@
 import { defineUserConfig } from "@vuepress/cli";
 import { defaultTheme } from "@vuepress/theme-default";
 import { componentsPlugin } from "vuepress-plugin-components";
+import { addViteSsrNoExternal } from "vuepress-shared";
 
 const base = <"/" | `/${string}/`>process.env.BASE || "/";
 
@@ -19,6 +20,7 @@ export default defineUserConfig({
 
     sidebar: [
       "/demo/",
+      "/demo/artplayer",
       "/demo/audioplayer",
       "/demo/badge",
       "/demo/bilibili",
@@ -26,6 +28,7 @@ export default defineUserConfig({
       "/demo/codepen",
       "/demo/fonticon",
       "/demo/pdf",
+      "/demo/siteinfo",
       "/demo/stackblitz",
       "/demo/videoplayer",
       "/demo/youtube",
@@ -36,9 +39,14 @@ export default defineUserConfig({
     },
   }),
 
+  extendsBundlerOptions: (bundlerOptions, app) => {
+    addViteSsrNoExternal(bundlerOptions, app, "artplayer-plugin-danmuku");
+  },
+
   plugins: [
     componentsPlugin({
       components: [
+        "ArtPlayer",
         "AudioPlayer",
         "Badge",
         "BiliBili",
@@ -46,6 +54,7 @@ export default defineUserConfig({
         "CodePen",
         "FontIcon",
         "PDF",
+        "SiteInfo",
         "StackBlitz",
         "VideoPlayer",
         "YouTube",
@@ -63,23 +72,22 @@ export default defineUserConfig({
       rootComponents: {
         addThis: "ra-5f829c59e6c6bc9a",
         backToTop: true,
-        notice: {
-          locales: {
-            "/": {
-              title: "Notice Title",
-              content: "Notice Content",
-              actions: [
-                {
-                  text: "Primary Action",
-                  link: "https://vuepress-theme-hope.github.io/",
-                  type: "primary",
-                },
-                { text: "Default Action" },
-              ],
-            },
+        notice: [
+          {
+            match: /^\/$/,
+            title: "Notice Title",
+            content: "Notice Content",
+            actions: [
+              {
+                text: "Primary Action",
+                link: "https://theme-hope.vuejs.press/",
+                type: "primary",
+              },
+              { text: "Default Action" },
+            ],
+            fullscreen: true,
           },
-          fullscreen: true,
-        },
+        ],
       },
     }),
   ],

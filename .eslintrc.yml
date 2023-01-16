@@ -121,6 +121,14 @@ rules:
   "@typescript-eslint/no-unsafe-member-access":
     - warn
 
+  no-unmodified-loop-condition:
+    - error
+
+  sort-imports:
+    - error
+    - allowSeparatedGroups: true
+      ignoreDeclarationSort: true
+
   vue/block-lang:
     - error
 

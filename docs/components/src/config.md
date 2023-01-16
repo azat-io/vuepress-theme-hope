@@ -9,6 +9,7 @@ icon: config
 
   ```ts
   type AvailableComponent =
+    | "ArtPlayer"
     | "AudioPlayer"
     | "Badge"
     | "BiliBili"
@@ -26,6 +27,7 @@ Components to be registered.
 
 Available component names:
 
+- `"ArtPlayer"`
 - `"AudioPlayer"`
 - `"Badge"`
 - `"BiliBili"`
@@ -39,6 +41,13 @@ Available component names:
 ## componentsOptions
 
 Global config for components.
+
+### componentsOptions.artPlayer
+
+- Type: `ComponentsArtPlayerOptions`
+- Required: No
+- Details:
+  - [Guide → ArtPlayer](./guide/artplayer.md#global-config)
 
 ### componentsOptions.fontIcon.assets
 
@@ -94,7 +103,24 @@ Whether enabling backToTop button. When setting a number, it will be used as Bac
 - Type: `NoticeOptions`
 
   ```ts
-  interface NoticeLocaleOptions {
+  interface NoticeActionOption {
+    /**
+     * Action text
+     */
+    text: string;
+    /**
+     * Action link
+     */
+    link?: string;
+    /**
+     * Action type
+     *
+     * @default 'default
+     */
+    type?: "primary" | "default";
+  }
+
+  interface NoticeItemOptions {
     /**
      * Notice title
      */
@@ -104,33 +130,6 @@ Whether enabling backToTop button. When setting a number, it will be used as Bac
      * Notice content
      */
     content: string;
-
-    /**
-     * Notice footer
-     */
-    actions: {
-      /**
-       * Action text
-       */
-      text: string;
-      /**
-       * Action link
-       */
-      link?: string;
-      /**
-       * Action type
-       *
-       * @default 'default
-       */
-      type?: "primary" | "default";
-    }[];
-  }
-
-  interface NoticeOptions {
-    /**
-     * Notice locales Options
-     */
-    locales: Record<string, NoticeLocaleOptions>;
 
     /**
      * Notice key
@@ -146,12 +145,12 @@ Whether enabling backToTop button. When setting a number, it will be used as Bac
      *
      * @default false
      */
-    showOnce?: string;
+    showOnce?: boolean;
 
     /**
      * Whether the notice shall be confirmed
      *
-     * @default true
+     * @default false
      */
     confirm?: boolean;
 
@@ -161,7 +160,15 @@ Whether enabling backToTop button. When setting a number, it will be used as Bac
      * @default false
      */
     fullscreen?: boolean;
+
+    /**
+     * Notice actions
+     */
+    actions?: NoticeActionOption[];
   }
+
+  type NoticeOptions = NoticeItemOptions &
+    ({ path: string } | { match: RegExp });
   ```
 
 - Required: No
@@ -216,6 +223,30 @@ Locales config for BackToTop button.
 
 Locales config for catalog component.
 
+### locales.pdf
+
+- Type: `PDFLocaleConfig`
+
+  ```ts
+  interface PDFLocaleData {
+    /**
+     * PDF hint text
+     *
+     * @description Only used if the browser does not support embedding PDF and no PDFJS URL is provided.
+     * [url] will be replaced by actual PDF link.
+     */
+    hint: string;
+  }
+
+  interface PDFLocaleConfig {
+    [localePath: string]: CatalogLocaleData;
+  }
+  ```
+
+- Required: No
+
+Locales config for pdf component.
+
 ::: details Built-in Supported Languages
 
 - **Simplified Chinese** (zh-CN)
@@ -233,5 +264,6 @@ Locales config for catalog component.
 - **Japanese** (ja-JP)
 - **Turkish** (tr-TR)
 - **Korean** (ko-KR)
+- **Finnish** (fi-FI)
 
 :::

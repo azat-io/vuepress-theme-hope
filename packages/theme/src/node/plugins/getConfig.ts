@@ -18,9 +18,9 @@ import { getSEOPlugin } from "./seo.js";
 
 import type { App, PluginConfig } from "@vuepress/core";
 import type {
+  PluginsOptions,
   ThemeData,
   ThemeOptions,
-  PluginsOptions,
 } from "../../shared/index.js";
 
 export const getPluginConfig = (
@@ -29,7 +29,12 @@ export const getPluginConfig = (
   themeData: ThemeData,
   options: Pick<
     ThemeOptions,
-    "backToTop" | "hostname" | "hotReload" | "iconAssets" | "iconPrefix"
+    | "backToTop"
+    | "hostname"
+    | "hotReload"
+    | "iconAssets"
+    | "iconPrefix"
+    | "favicon"
   >,
   legacy = false
 ): PluginConfig => {
@@ -47,10 +52,16 @@ export const getPluginConfig = (
     getCopyrightPlugin(themeData, plugins.copyright, options.hostname),
     // seo should work before feed
     getSEOPlugin(themeData, plugins, options.hostname, legacy),
-    getFeedPlugin(themeData, plugins.feed, options.hostname, legacy),
+    getFeedPlugin(
+      themeData,
+      plugins.feed,
+      options.hostname,
+      options.favicon,
+      legacy
+    ),
     getMdEnhancePlugin(plugins.mdEnhance, legacy),
     getPhotoSwipePlugin(plugins.photoSwipe),
-    getPWAPlugin(plugins.pwa, legacy),
+    getPWAPlugin(plugins.pwa, options.favicon, legacy),
     getSitemapPlugin(plugins.sitemap, options.hostname, legacy),
   ].filter((item) => item !== null) as PluginConfig;
 

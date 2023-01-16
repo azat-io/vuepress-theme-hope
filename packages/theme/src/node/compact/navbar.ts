@@ -1,18 +1,19 @@
+import { isArray, isPlainObject, isString } from "@vuepress/shared";
 import { deprecatedLogger } from "./utils.js";
 import { logger } from "../utils.js";
 
 import type {
-  NavbarOptions,
-  NavbarItem,
   NavbarGroup,
+  NavbarItem,
+  NavbarOptions,
 } from "../../shared/index.js";
 
 const handleNavbarOptions = (config: unknown[]): NavbarOptions =>
   config
     .map((item) => {
-      if (typeof item === "string") return item;
+      if (isString(item)) return item;
 
-      if (typeof item === "object" && item) {
+      if (isPlainObject(item) && item) {
         deprecatedLogger({
           options: item as Record<string, unknown>,
           deprecatedOption: "items",
@@ -21,7 +22,7 @@ const handleNavbarOptions = (config: unknown[]): NavbarOptions =>
         });
 
         // @ts-ignore
-        if (Array.isArray(item.children))
+        if (isArray(item.children))
           // @ts-ignore
           handleNavbarOptions(item.children as unknown[]);
 
@@ -39,7 +40,7 @@ export const convertNavbarOptions = (
   config: unknown
 ): NavbarOptions | false => {
   if (config === false) return false;
-  if (Array.isArray(config)) return handleNavbarOptions(config);
+  if (isArray(config)) return handleNavbarOptions(config);
 
   logger.error('"navbar" config should be an array');
 

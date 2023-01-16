@@ -1,9 +1,12 @@
+import { isArray, isString } from "@vuepress/shared";
 import { CLIENT_FOLDER, logger } from "./utils.js";
 
 import type { App } from "@vuepress/core";
 import type { AvailableComponent, ComponentOptions } from "./options.js";
+import type { NoticeClientOptions, NoticeOptions } from "../shared/index.js";
 
 const availableComponents: AvailableComponent[] = [
+  "ArtPlayer",
   "AudioPlayer",
   "Badge",
   "BiliBili",
@@ -11,6 +14,7 @@ const availableComponents: AvailableComponent[] = [
   "CodePen",
   "FontIcon",
   "PDF",
+  "SiteInfo",
   "StackBlitz",
   "VideoPlayer",
   "YouTube",
@@ -30,7 +34,7 @@ const getIconLink = (
   if (iconLink === "iconfont")
     return {
       type: "style",
-      content: `@import url("//at.alicdn.com/t/c/font_2410206_s76eeqysx0t.css");`,
+      content: `@import url("//at.alicdn.com/t/c/font_2410206_5vb9zlyghj.css");`,
     };
 
   const actualLink = iconLink.match(/^(?:https?:)?\/\//g)
@@ -53,6 +57,26 @@ const getIconLink = (
 
   return null;
 };
+
+const getNoticeOptions = (options: NoticeOptions[]): NoticeClientOptions[] =>
+  options
+    .map(
+      ({ key, ...item }) =>
+        <NoticeClientOptions>{
+          noticeKey: key,
+          ...item,
+          ...("match" in item ? { match: item.match.toString() } : {}),
+        }
+    )
+    .sort((a, b) =>
+      "match" in a
+        ? "match" in b
+          ? b.match.localeCompare(a.match)
+          : -1
+        : "match" in b
+        ? 1
+        : (b.path || "").localeCompare(a.path || "")
+    );
 
 export const prepareConfigFile = (
   app: App,
@@ -101,7 +125,7 @@ useStyleTag(\`${content}\`, { id: "icon-assets" });
     }
   });
 
-  if (typeof rootComponents.addThis === "string") {
+  if (isString(rootComponents.addThis)) {
     shouldImportUseScriptTag = true;
     setup += `\
 useScriptTag(\`//s7.addthis.com/js/300/addthis_widget.js#pubid=${rootComponents.addThis}\`);
@@ -122,14 +146,16 @@ import BackToTop from "${CLIENT_FOLDER}components/BackToTop.js";
 `;
   }
 
-  if (typeof rootComponents.notice === "object") {
+  if (isArray(rootComponents.notice)) {
     shouldImportH = true;
     configImport += `\
 import Notice from "${CLIENT_FOLDER}components/Notice.js";
 `;
 
     configRootComponents += `\
-() => h(Notice, ${JSON.stringify(rootComponents.notice)}),
+() => h(Notice, { config: ${JSON.stringify(
+      getNoticeOptions(rootComponents.notice)
+    )} }),
 `;
   }
 

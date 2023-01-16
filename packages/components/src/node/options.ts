@@ -1,11 +1,15 @@
 import type { LocaleConfig } from "@vuepress/core";
 import type {
+  ArtPlayerOptions,
   BackToTopLocaleData,
   CatalogLocaleData,
   NoticeOptions,
+  PDFLocaleData,
+  SiteInfoLocaleData,
 } from "../shared/index.js";
 
 export type AvailableComponent =
+  | "ArtPlayer"
   | "AudioPlayer"
   | "Badge"
   | "BiliBili"
@@ -14,6 +18,7 @@ export type AvailableComponent =
   | "FontIcon"
   | "PDF"
   | "StackBlitz"
+  | "SiteInfo"
   | "VideoPlayer"
   | "YouTube";
 
@@ -34,6 +39,13 @@ export interface ComponentOptions {
    */
   componentOptions?: {
     /**
+     * ArtPlayer config
+     *
+     * ArtPlayer 配置
+     */
+    artPlayer?: ArtPlayerOptions;
+
+    /**
      * FontIcon config
      *
      * 图标配置
@@ -44,7 +56,7 @@ export interface ComponentOptions {
        *
        * 字体图标资源链接
        *
-       * @description `'iconfont'` and `'fontawesome'` keywords are supported
+       * @description `"iconfont"` and `"fontawesome"` keywords are supported
        */
       assets?:
         | "iconfont"
@@ -58,7 +70,7 @@ export interface ComponentOptions {
        *
        * 字体图标的 Class 前缀
        *
-       * @default ''
+       * @default ""
        */
       prefix?: string;
     };
@@ -103,7 +115,7 @@ export interface ComponentOptions {
      *
      * 全局通知配置
      */
-    notice?: NoticeOptions;
+    notice?: NoticeOptions[];
   };
 
   locales?: {
@@ -120,5 +132,19 @@ export interface ComponentOptions {
      * 目录组件国际化配置
      */
     catalog?: LocaleConfig<CatalogLocaleData>;
+
+    /**
+     * PDF Locales config
+     *
+     * PDF 组件国际化配置
+     */
+    pdf?: LocaleConfig<PDFLocaleData>;
+
+    /**
+     * SiteInfo Locales config
+     *
+     * 站点信息 组件国际化配置
+     */
+    siteInfo?: LocaleConfig<SiteInfoLocaleData>;
   };
 }
